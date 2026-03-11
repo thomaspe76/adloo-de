@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Kassra Adloo – SPD Stadtratskandidat für Aschaffenburg' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-white text-dark font-sans">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+      <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="/" class="text-xl font-bold text-primary">Kassra Adloo</a>
+        <div class="hidden md:flex gap-6">
+          <a href="/" class="hover:text-primary transition-colors">Home</a>
+          <a href="/news" class="hover:text-primary transition-colors">News</a>
+          <a href="/kommunalwahl-aschaffenburg-2026" class="hover:text-primary transition-colors">Wahl 2026</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2" aria-label="Menü öffnen">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+        <a href="/" class="block py-2 hover:text-primary">Home</a>
+        <a href="/news" class="block py-2 hover:text-primary">News</a>
+        <a href="/kommunalwahl-aschaffenburg-2026" class="block py-2 hover:text-primary">Wahl 2026</a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="bg-dark text-white mt-20">
+      <div class="max-w-6xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="font-bold text-lg mb-4">Kassra Adloo</h3>
+            <p class="text-gray-400">SPD Stadtratskandidat für Aschaffenburg</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Links</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="/impressum" class="hover:text-white transition-colors">Impressum</a></li>
+              <li><a href="/datenschutzerklaerung" class="hover:text-white transition-colors">Datenschutz</a></li>
+              <li><a href="/transparenz" class="hover:text-white transition-colors">Transparenz</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Social Media</h3>
+            <div class="flex gap-4">
+              <a href="https://instagram.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">TikTok</a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+          &copy; {new Date().getFullYear()} Kassra Adloo. Alle Rechte vorbehalten.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+    </script>
+  </body>
+</html>
