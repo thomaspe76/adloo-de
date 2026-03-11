@@ -8,9 +8,6 @@ const allPosts = await getCollection('posts');
 const latestPosts = allPosts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
-
-const formatDate = (date: Date) =>
-  date.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 
 <BaseLayout title="Kassra Adloo | Stadtratskandidat SPD Aschaffenburg">
@@ -28,7 +25,7 @@ const formatDate = (date: Date) =>
     <div class="absolute top-[15%] right-[8%] z-10 hidden md:block">
       <img
         src="/images/roter-ballon-danke-5000.webp"
-        alt="Roter Ballon"
+        alt="Roter Ballon – Danke für 5000 Stimmen"
         class="w-28 md:w-36 hover:scale-105 transition-transform"
         style="animation: ballonFloat 4s infinite;"
       />
@@ -38,18 +35,23 @@ const formatDate = (date: Date) =>
     <div class="relative z-10 h-full flex items-end pb-16 md:pb-24">
       <div class="max-w-[72rem] mx-auto px-4 md:px-6 w-full">
         <div class="max-w-2xl">
-          <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
-            Gemeinsam für ein vielfältiges und lebendiges Aschaffenburg
-          </h1>
-          <p class="text-lg md:text-xl text-white/90 mb-2">
+          <p class="text-lg md:text-xl text-primary font-medium mb-1">
             Kassra Adloo – Stadtratskandidat in Aschaffenburg
           </p>
-          <p class="text-base text-white/70 mb-8">
+          <p class="text-base text-white/70 mb-4">
             Unternehmer · Familienvater · einer von uns
+          </p>
+          <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-6">
+            Gemeinsam für ein vielfältiges und lebendiges Aschaffenburg
+          </h1>
+          <p class="text-base md:text-lg text-white/90 mb-8 leading-relaxed">
+            Als Gastronom mit iranischen Wurzeln weiß ich, was Integration bedeutet und was
+            unsere Innenstadt braucht. Ich packe an – für eine Stadt, in der alle vorankommen.
+            Jetzt und in Zukunft.
           </p>
           <a
             href="#ueber-kassra"
-            class="inline-block bg-btn text-white font-bold text-lg px-8 py-3 rounded-full hover:bg-btn-hover transition-colors"
+            class="inline-block bg-primary text-white font-bold text-lg px-8 py-3 rounded-full hover:bg-primary-dark transition-colors"
           >
             Kassra kennenlernen →
           </a>
@@ -58,47 +60,8 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
-  <!-- About / Wer ist Kassra Adloo? -->
-  <section id="ueber-kassra" class="max-w-[72rem] mx-auto px-4 md:px-6 py-16 md:py-24">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-6">
-        <h2 class="text-3xl md:text-4xl font-bold">Wer ist Kassra Adloo?</h2>
-        <p class="text-gray-700 leading-relaxed">
-          Seit 23 Jahren lebe ich in Deutschland und habe mir hier eine Heimat aufgebaut.
-          Mit 3 erfolgreichen Unternehmen in Aschaffenburg kenne ich die Chancen und
-          Herausforderungen unserer Stadt aus erster Hand.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-          In meinen Restaurants arbeiten Menschen aus über 10 Nationen zusammen.
-          Diese Vielfalt ist meine Stärke – und soll es auch für ganz Aschaffenburg sein.
-        </p>
-        <div class="grid grid-cols-3 gap-4 pt-4">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary">23</div>
-            <div class="text-sm text-gray-500">Jahre in Deutschland</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary">3</div>
-            <div class="text-sm text-gray-500">Unternehmen</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary">10+</div>
-            <div class="text-sm text-gray-500">Nationen im Team</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <img
-          src="/images/kassra-adloo-business-mit-krawatte-hueftcut.webp"
-          alt="Kassra Adloo im Business Look"
-          class="w-full rounded-lg object-cover aspect-[4/5]"
-        />
-      </div>
-    </div>
-  </section>
-
   <!-- Video -->
-  <section class="bg-gray-100 py-16 md:py-24">
+  <section class="py-16 md:py-24">
     <div class="max-w-[72rem] mx-auto px-4 md:px-6">
       <div class="max-w-4xl mx-auto">
         <video
@@ -114,9 +77,71 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
-  <!-- Blog Cards -->
+  <!-- Wer ist Kassra Adloo? -->
+  <section id="ueber-kassra" class="max-w-[72rem] mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 md:gap-16 items-start">
+      <div class="space-y-5">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary">Wer ist Kassra Adloo?</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Ich bin <strong>Kassra Adloo</strong>, Unternehmer aus <strong>Aschaffenburg</strong>, und
+          kandidiere im März 2026 für den Stadtrat unserer Stadt.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Als Geschäftsführer mehrerer regionaler Gastronomie- und
+          Cateringbetriebe kenne ich die Herausforderungen der
+          Aschaffenburger Innenstadt aus eigener Erfahrung – von
+          wirtschaftlichem Druck über Bürokratie bis hin zur Belebung
+          unserer Stadtmitte.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          In 64 Sekunden erzähle ich Ihnen einen Teil meiner Geschichte:
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Von Iran nach Aschaffenburg.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Von einer Idee zu zwei erfolgreichen Restaurants und
+          einem Cateringbetrieb.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Von Integration und Unternehmergeist zur Kandidatur für die SPD
+          im Stadtrat.
+        </p>
+      </div>
+      <div class="flex gap-0 items-start">
+        <div class="text-center px-6 md:px-8">
+          <div class="text-4xl md:text-5xl font-bold text-dark">23</div>
+          <div class="text-sm text-gray-700 mt-2 font-medium">Jahre in<br />Deutschland</div>
+        </div>
+        <div class="text-center px-6 md:px-8 border-l border-gray-300">
+          <div class="text-4xl md:text-5xl font-bold text-dark">3</div>
+          <div class="text-sm text-gray-700 mt-2 font-medium">erfolgreiche<br />Unternehmen</div>
+        </div>
+        <div class="text-center px-6 md:px-8 border-l border-gray-300">
+          <div class="text-4xl md:text-5xl font-bold text-dark">10</div>
+          <div class="text-sm text-gray-700 mt-2 font-medium">Nationen im<br />Team</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog / Unterwegs für Aschaffenburg -->
   <section class="max-w-[72rem] mx-auto px-4 md:px-6 py-16 md:py-24">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Aktuelles</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-primary leading-tight">
+        Unterwegs für Aschaffenburg –<br />meine Einblicke
+      </h2>
+      <div>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Transparenz beginnt mit Dialog. In diesem Blog teile ich
+          Einblicke in meine Kampagne, informiere über anstehende
+          Events und zeige, wofür ich in Aschaffenburg eintrete.
+        </p>
+        <a href="/news" class="text-primary font-medium hover:underline">
+          Mehr im News Archiv
+        </a>
+      </div>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {latestPosts.map(post => (
         <BlogCard
@@ -124,65 +149,114 @@ const formatDate = (date: Date) =>
           slug={post.id}
           image={post.data.image || '/images/kassra-adloo-logo.webp'}
           category={post.data.category}
-          date={formatDate(post.data.date)}
         />
       ))}
     </div>
-    <div class="text-center mt-10">
-      <a
-        href="/news"
-        class="inline-block bg-btn text-white font-bold px-8 py-3 rounded-full hover:bg-btn-hover transition-colors"
-      >
-        Alle News ansehen →
-      </a>
+  </section>
+
+  <!-- Warum ich für den Stadtrat Aschaffenburg kandidiere -->
+  <section class="max-w-[72rem] mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div class="space-y-5">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary leading-tight">
+          Warum ich für den Stadtrat Aschaffenburg kandidiere
+        </h2>
+        <p class="text-gray-700 leading-relaxed">
+          Vor 23 Jahren kam ich aus dem Iran nach Aschaffenburg – mit
+          einem Traum und großen Plänen. Heute führe ich drei
+          erfolgreiche Betriebe in unserer Innenstadt und beschäftige
+          Menschen aus acht verschiedenen Nationen.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Was ich dabei gelernt habe: Integration funktioniert nicht durch
+          Reden, sondern durch Machen. Durch Arbeitsplätze schaffen.
+          Durch Begegnungen ermöglichen. Durch Vertrauen aufbauen.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Als Unternehmer sehe ich täglich, was unsere Innenstadt stark
+          macht – und wo es hakt. Als Familienvater denke ich an die
+          Zukunft unserer Kinder in einer sich wandelnden Welt. Als
+          jemand, der Integration erfolgreich gelebt hat, weiß ich: Vielfalt
+          ist eine Chance, keine Bedrohung.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Deshalb kandidiere ich: Um die Erfahrungen aus meinem
+          Unternehmen in die Stadtpolitik zu bringen. Um zu zeigen, dass
+          Integration und wirtschaftlicher Erfolg Hand in Hand gehen.
+          Um Aschaffenburg zu einer Stadt zu machen, in der alle eine
+          Chance haben.
+        </p>
+      </div>
+      <div class="relative">
+        <img
+          src="/images/catering-aschaffenburg-kassra.jpeg"
+          alt="Kassra Adloo – Catering Aschaffenburg"
+          class="w-full rounded-lg object-cover aspect-[4/5]"
+          loading="lazy"
+        />
+        <!-- Quote box overlapping image -->
+        <div class="absolute bottom-0 left-0 right-4 md:right-8 bg-white p-6 md:p-8 rounded-lg shadow-sm translate-y-4">
+          <div class="flex gap-4 items-start">
+            <span class="text-2xl font-bold text-dark leading-none mt-1">"</span>
+            <p class="text-sm md:text-base font-bold text-dark leading-snug">
+              Wissen Sie, was gute Politik und ein guter Burger gemeinsam haben? Man redet
+              nicht nur drüber, man muss sie machen!
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Schwerpunkte -->
-  <section class="bg-gray-100 py-16 md:py-24">
-    <div class="max-w-[72rem] mx-auto px-4 md:px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Meine Schwerpunkte</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <FeatureCard
-          title="Integration & Vielfalt"
-          body="In meinen Restaurants arbeiten Menschen aus 8 Nationen zusammen. Nicht trotz ihrer Unterschiede, sondern wegen ihrer Vielfalt sind wir erfolgreich. Diese Erfahrung möchte ich für ganz Aschaffenburg nutzbar machen."
-          bullets={[
-            'Integrationszentrum stärken',
-            'Mehr Begegnungsräume schaffen',
-            'Unternehmen bei Vielfalt unterstützen',
-            'Sprachförderung ausbauen',
-          ]}
-          image="/images/kassra-adloo-business-mit-krawatte-hueftcut.webp"
-          imageAlt="Kassra Adloo"
-          tagline="Integration funktioniert – ich erlebe es täglich."
-        />
-        <FeatureCard
-          title="Lebendige Innenstadt"
-          body="Seit 8 Jahren bin ich mit meinen Restaurants Teil der Aschaffenburger Innenstadt. Ich kenne die Herausforderungen von Unternehmern und die Wünsche der Bürger aus erster Hand."
-          bullets={[
-            'Bürokratie abbauen, Genehmigungen beschleunigen',
-            'Mehr Aufenthaltsqualität schaffen',
-            'Außengastronomie fördern',
-            'Leerstand intelligent nutzen',
-          ]}
-          image="/images/biergarten-am-herstallturm.jpg"
-          imageAlt="Biergarten am Herstallturm"
-          tagline="Als Unternehmer weiß ich, was unsere City braucht."
-        />
-        <FeatureCard
-          title="Zukunftsfähige Stadt"
-          body="Als Gastronom spüre ich den Klimawandel direkt: Heiße Sommer, Starkregen, steigende Energiekosten. Wir müssen jetzt handeln, um Aschaffenburg zukunftsfähig zu machen."
-          bullets={[
-            'Mehr Grün in der Innenstadt',
-            'Erneuerbare Energien fördern',
-            'Gebäude klimafit machen',
-            'Nachhaltige Mobilität stärken',
-          ]}
-          image="/images/klimastreifen-bayern.webp"
-          imageAlt="Klimastreifen Bayern"
-          tagline="Klimawandel erfordert kluge Anpassungen."
-        />
-      </div>
+  <!-- Meine 3 Schwerpunkte -->
+  <section class="max-w-[72rem] mx-auto px-4 md:px-6 pt-24 pb-16 md:pb-24">
+    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-16">Meine 3 Schwerpunkte</h2>
+
+    <div class="space-y-16 md:space-y-24">
+      <FeatureCard
+        title="Integration & Vielfalt"
+        body="In meinen Restaurants arbeiten Menschen aus 8 Nationen zusammen. Nicht trotz ihrer Unterschiede, sondern wegen ihrer Vielfalt sind wir erfolgreich. Diese Erfahrung möchte ich für ganz Aschaffenburg nutzbar machen."
+        bullets={[
+          'Integrationszentrum stärken',
+          'Mehr Begegnungsräume schaffen',
+          'Unternehmen bei Vielfalt unterstützen',
+          'Sprachförderung ausbauen',
+        ]}
+        image="/images/kassra-adloo-business-mit-krawatte-hueftcut.webp"
+        imageAlt="Kassra Adloo"
+        tagline="Integration funktioniert – ich erlebe es täglich."
+        layout="text-left"
+      />
+
+      <FeatureCard
+        title="Lebendige Innenstadt"
+        body="Seit 8 Jahren bin ich mit meinen Restaurants Teil der Aschaffenburger Innenstadt. Ich kenne die Herausforderungen von Unternehmern und die Wünsche der Bürger aus erster Hand."
+        bullets={[
+          'Bürokratie abbauen, Genehmigungen beschleunigen',
+          'Mehr Aufenthaltsqualität schaffen',
+          'Außengastronomie fördern',
+          'Leerstand intelligent nutzen',
+        ]}
+        image="/images/biergarten-am-herstallturm.jpg"
+        imageAlt="Biergarten am Herstallturm"
+        tagline="Als Unternehmer weiß ich, was unsere City braucht."
+        layout="image-left"
+      />
+
+      <FeatureCard
+        title="Zukunftsfähige Stadt"
+        body="Als Gastronom spüre ich den Klimawandel direkt: Heiße Sommer, Starkregen, steigende Energiekosten. Wir müssen jetzt handeln, um Aschaffenburg zukunftsfähig zu machen."
+        bullets={[
+          'Mehr Grün in der Innenstadt',
+          'Erneuerbare Energien fördern',
+          'Gebäude klimafit machen',
+          'Nachhaltige Mobilität stärken',
+        ]}
+        image="/images/klimastreifen-bayern.webp"
+        imageAlt="Klimastreifen Bayern"
+        tagline="Klimawandel erfordert kluge Anpassungen."
+        layout="text-left"
+      />
     </div>
   </section>
 
