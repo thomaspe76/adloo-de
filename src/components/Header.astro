@@ -1,0 +1,74 @@
+---
+const currentPath = Astro.url.pathname;
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/news', label: 'News' },
+  { href: '/kommunalwahl-aschaffenburg-2026', label: 'Wahl 2026' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-300/30">
+  <nav class="max-w-[72rem] mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
+    <a href="/" class="flex-shrink-0">
+      <img
+        src="/images/kassra-adloo-logo.webp"
+        alt="Kassra Adloo"
+        class="h-10 md:h-12 w-auto"
+      />
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-sm font-medium transition-colors hover:text-primary',
+            currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+              ? 'text-primary'
+              : 'text-dark',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-dark"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-300/30 bg-white">
+    <div class="max-w-[72rem] mx-auto px-4 py-4 space-y-1">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'block py-3 px-2 text-sm font-medium rounded-lg transition-colors',
+            currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+              ? 'text-primary bg-primary/5'
+              : 'text-dark hover:text-primary hover:bg-gray-50',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>

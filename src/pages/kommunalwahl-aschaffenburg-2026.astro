@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Kommunalwahl Aschaffenburg 2026 | Kassra Adloo"
+  description="Alle Informationen zur Kommunalwahl 2026 in Aschaffenburg: Termine, Wahlverfahren und wie Sie Ihre Stimme abgeben können."
+>
+  <!-- Hero -->
+  <section class="bg-gray-100">
+    <div class="max-w-[72rem] mx-auto px-4 md:px-6 py-12 md:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="inline-block bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full mb-4">
+            8. März 2026
+          </span>
+          <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+            Kommunalwahl Aschaffenburg 2026
+          </h1>
+          <p class="text-lg text-gray-700">
+            Alles was Sie über die Wahl wissen müssen – einfach erklärt.
+          </p>
+        </div>
+        <div>
+          <img
+            src="/images/kommunalwahl-aschaffenburg-2026-stimmabgabe-wahlurne.webp"
+            alt="Stimmabgabe Wahlurne"
+            class="w-full rounded-r-2xl object-cover aspect-video"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="max-w-[72rem] mx-auto px-4 md:px-6 py-16 md:py-24">
+    <h2 class="text-3xl font-bold text-center mb-12">Zeitlicher Überblick</h2>
+    <div class="max-w-3xl mx-auto space-y-0">
+      {[
+        { date: '26.01. – 15.02.2026', title: 'Versand Wahlbenachrichtigungen', desc: 'Alle Wahlberechtigten erhalten ihre Wahlbenachrichtigung per Post.' },
+        { date: 'Nach Erhalt', title: 'Briefwahlantrag möglich', desc: 'Mit der Wahlbenachrichtigung können Sie direkt Briefwahl beantragen.' },
+        { date: 'Ab ca. 16.02.2026', title: 'Versand Briefwahlunterlagen', desc: 'Die Briefwahlunterlagen werden nach Beantragung zugestellt.' },
+        { date: '06.03.2026, 15:00 Uhr', title: 'Frist Briefwahlantrag', desc: 'Letzter Termin für die Beantragung der Briefwahl.' },
+        { date: '08.03.2026', title: 'Wahltag', desc: 'Wahllokale geöffnet von 8:00 bis 18:00 Uhr. Briefwahlunterlagen müssen bis 18:00 Uhr eingehen.' },
+        { date: 'Ggf. 22.03.2026', title: 'Stichwahl', desc: 'Falls kein OB-Kandidat die absolute Mehrheit erreicht.' },
+      ].map((item, i) => (
+        <div class="grid grid-cols-[120px_24px_1fr] md:grid-cols-[200px_24px_1fr] gap-4 items-start">
+          <div class="text-right text-sm font-bold text-gray-500 pt-1">{item.date}</div>
+          <div class="flex flex-col items-center">
+            <div class="w-3 h-3 rounded-full bg-primary flex-shrink-0 mt-1.5"></div>
+            {i < 5 && <div class="w-0.5 bg-gray-300 flex-1 min-h-[3rem]"></div>}
+          </div>
+          <div class="pb-8">
+            <h3 class="font-bold text-dark">{item.title}</h3>
+            <p class="text-sm text-gray-700 mt-1">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Was wird gewählt? - Flip Cards -->
+  <section class="bg-gray-100 py-16 md:py-24">
+    <div class="max-w-[72rem] mx-auto px-4 md:px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Was wird gewählt?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Stadtrat Card -->
+        <div class="group [perspective:1000px]">
+          <div class="relative w-full min-h-[28rem] md:min-h-[32rem] transition-transform duration-[800ms] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+            <!-- Front -->
+            <div class="absolute inset-0 [backface-visibility:hidden] bg-white rounded-xl p-8 flex flex-col justify-center shadow-sm">
+              <h3 class="text-2xl font-bold mb-4 text-primary">Der Stadtrat</h3>
+              <p class="text-gray-700 leading-relaxed">
+                Der Stadtrat ist das wichtigste Gremium der Stadt. 44 ehrenamtliche
+                Stadtratsmitglieder entscheiden über den Haushalt, die Stadtplanung und
+                alle wichtigen kommunalen Themen.
+              </p>
+            </div>
+            <!-- Back -->
+            <div class="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden">
+              <img
+                src="/images/stadtrat-aschaffenburg-symbolbild.png"
+                alt="Stadtrat Aschaffenburg"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-black/50 flex items-end p-8">
+                <p class="text-white text-sm">
+                  44 Mitglieder vertreten die Bürgerinnen und Bürger im Stadtrat.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OB Card -->
+        <div class="group [perspective:1000px]">
+          <div class="relative w-full min-h-[28rem] md:min-h-[32rem] transition-transform duration-[800ms] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+            <!-- Front -->
+            <div class="absolute inset-0 [backface-visibility:hidden] bg-white rounded-xl p-8 flex flex-col justify-center shadow-sm">
+              <h3 class="text-2xl font-bold mb-4 text-primary">Der Oberbürgermeister</h3>
+              <p class="text-gray-700 leading-relaxed">
+                Der Oberbürgermeister wird direkt von den Bürgern gewählt. Er leitet
+                die Stadtverwaltung, führt den Vorsitz im Stadtrat und vertritt
+                die Stadt nach außen.
+              </p>
+            </div>
+            <!-- Back -->
+            <div class="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden bg-primary flex items-center justify-center p-8">
+              <p class="text-white text-center leading-relaxed">
+                Der OB wird für 6 Jahre gewählt und hat umfassende Gestaltungsmöglichkeiten
+                für die Zukunft der Stadt.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wer darf wählen? -->
+  <section class="max-w-[72rem] mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-6">Wer darf wählen?</h2>
+        <div class="space-y-4 text-gray-700">
+          <p>Sie sind wahlberechtigt, wenn Sie:</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="text-primary font-bold text-lg mt-0.5">✓</span>
+              <span>Mindestens 18 Jahre alt sind</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary font-bold text-lg mt-0.5">✓</span>
+              <span>Die deutsche Staatsangehörigkeit oder die eines EU-Mitgliedstaates besitzen</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary font-bold text-lg mt-0.5">✓</span>
+              <span>Seit mindestens 3 Monaten in Aschaffenburg gemeldet sind</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary font-bold text-lg mt-0.5">✓</span>
+              <span>Nicht vom Wahlrecht ausgeschlossen sind</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <img
+          src="/images/wahlbenachrichtigung-ausweis-kommunalwahl-aschaffenburg-2026.webp"
+          alt="Wahlbenachrichtigung zur Kommunalwahl 2026"
+          class="w-full rounded-lg object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Stimmabgabe: 4 Schritte -->
+  <section class="bg-gray-100 py-16 md:py-24">
+    <div class="max-w-[72rem] mx-auto px-4 md:px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">So geben Sie Ihre Stimme ab</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {[
+          {
+            step: '1',
+            title: 'Wahlbenachrichtigung',
+            desc: 'Sie erhalten Ihre Wahlbenachrichtigung per Post. Diese enthält Ihr Wahllokal und die Möglichkeit, Briefwahl zu beantragen.',
+          },
+          {
+            step: '2',
+            title: 'Art der Stimmabgabe wählen',
+            desc: 'Entscheiden Sie sich zwischen Urnenwahl am Wahltag oder Briefwahl von zu Hause.',
+          },
+          {
+            step: '3',
+            title: 'Stimmen vergeben',
+            desc: 'Sie haben 44 Stimmen für den Stadtrat. Sie können häufeln (bis zu 3 Stimmen pro Person) und panaschieren (Stimmen auf verschiedene Listen verteilen).',
+          },
+          {
+            step: '4',
+            title: 'Stimme abgeben',
+            desc: 'Am Wahltag im Wahllokal (8-18 Uhr) oder per Briefwahl (muss bis 18 Uhr eingehen).',
+          },
+        ].map(item => (
+          <div class="bg-white rounded-xl p-6 md:p-8 flex gap-5">
+            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
+              {item.step}
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-2">{item.title}</h3>
+              <p class="text-sm text-gray-700">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stimmzettel Beispiel -->
+  <section class="max-w-[72rem] mx-auto px-4 md:px-6 py-16 md:py-24 text-center">
+    <h2 class="text-3xl font-bold mb-8">Beispiel Stimmzettel</h2>
+    <div class="max-w-md mx-auto">
+      <img
+        src="/images/beispiel-stimmzettel-kommunalwahl-aschaffenburg.webp"
+        alt="Beispiel Stimmzettel Kommunalwahl Aschaffenburg"
+        class="w-full rounded-lg shadow-lg"
+      />
+    </div>
+  </section>
+</BaseLayout>

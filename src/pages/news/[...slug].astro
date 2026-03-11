@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = await getCollection('posts');
+const relatedPosts = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const postUrl = `https://adloo.de/news/${post.id}`;
+---
+
+<BaseLayout
+  title={`${post.data.title} | Kassra Adloo`}
+  description={post.data.description}
+  image={post.data.image}
+>
+  <!-- Post Header -->
+  <section class="bg-gray-100">
+    <div class="max-w-[72rem] mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 text-sm text-gray-500">
+            <span class="bg-primary/10 text-primary font-medium px-3 py-1 rounded">
+              {post.data.category}
+            </span>
+            <time datetime={post.data.date.toISOString()}>
+              {formatDate(post.data.date)}
+            </time>
+          </div>
+          <h1 class="text-2xl md:text-4xl font-bold leading-tight">{post.data.title}</h1>
+          <p class="text-lg text-gray-700">{post.data.description}</p>
+          <ShareButtons url={postUrl} title={post.data.title} />
+        </div>
+        {post.data.image && (
+          <div>
+            <img
+              src={post.data.image}
+              alt={post.data.imageAlt || post.data.title}
+              class="w-full rounded-lg object-cover aspect-[4/3]"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Post Content -->
+  <section class="max-w-[72rem] mx-auto px-4 md:px-6 py-12 md:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12">
+      <!-- Article -->
+      <article class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-dark prose-p:text-gray-700 prose-a:text-primary prose-img:rounded-lg">
+        <Content />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-24 space-y-8">
+          <div class="bg-gray-100 rounded-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <img
+                src="/images/kassra-adloo-logo.webp"
+                alt="Kassra Adloo"
+                class="w-12 h-12 rounded-full object-cover"
+              />
+              <div>
+                <p class="font-bold text-sm">Kassra Adloo</p>
+                <p class="text-xs text-gray-500">SPD Stadtratskandidat</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-700 mb-4">
+              Folge mir auf Social Media für aktuelle Updates aus dem Wahlkampf!
+            </p>
+            <div class="flex gap-3">
+              <a
+                href="https://www.instagram.com/kassra.adloo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition-colors"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.tiktok.com/@kassraadloo"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-medium bg-dark text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors"
+              >
+                TikTok
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Related Posts -->
+  {relatedPosts.length > 0 && (
+    <section class="bg-gray-100 py-16">
+      <div class="max-w-[72rem] mx-auto px-4 md:px-6">
+        <h2 class="text-2xl font-bold mb-8">Weitere Beiträge</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedPosts.map(p => (
+            <BlogCard
+              title={p.data.title}
+              slug={p.id}
+              image={p.data.image || '/images/kassra-adloo-logo.webp'}
+              category={p.data.category}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
