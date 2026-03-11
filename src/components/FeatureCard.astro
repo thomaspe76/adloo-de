@@ -13,9 +13,12 @@ const { title, body, bullets, image, imageAlt, tagline, layout } = Astro.props;
 const isImageLeft = layout === 'image-left';
 ---
 
-<div class="bg-gray-100 rounded-lg overflow-hidden">
+<div class="relative pt-16 md:pt-20">
+  <!-- Gray background container (does NOT wrap image top) -->
+  <div class="absolute inset-0 top-16 md:top-20 bg-gray-100 rounded-sm"></div>
+
   <div class:list={[
-    'grid grid-cols-1 md:grid-cols-2 gap-0',
+    'relative grid grid-cols-1 md:grid-cols-2 gap-0',
     isImageLeft && 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1',
   ]}>
     <!-- Text Column -->
@@ -34,7 +37,7 @@ const isImageLeft = layout === 'image-left';
       <img
         src={image}
         alt={imageAlt}
-        class="w-full h-full object-cover aspect-[4/3] md:aspect-auto md:min-h-[400px]"
+        class="w-full h-auto object-cover aspect-[4/3] md:aspect-auto md:min-h-[400px]"
         loading="lazy"
       />
       <!-- Quote box overlapping image -->
